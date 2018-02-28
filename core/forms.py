@@ -1,6 +1,5 @@
 from django import forms
-from django.forms import ModelForm
-from . models import *
+from . models import file_upload
 
 class Uploadform(forms.ModelForm):
     class Meta:
