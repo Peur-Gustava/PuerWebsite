@@ -19,6 +19,6 @@ def FileUpload(request):
         else:
             form = Uploadform(commited=False)
             data = form.cleaned_data
-
             seriousmlprocess(data)
+
     return render(request,'file_upload.html',{'form':form })
