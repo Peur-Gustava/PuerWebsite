@@ -1,24 +1,18 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import TemplateView
+
 from .models import *
 from .forms import *
-from .tasks import add
-
-# add.delay(2,2)
-# core.tasks.add(2, 2)
 
 
-@login_required
-def FileUpload(request):
-    form = Uploadform()
-    if request.method == 'POST':
-        form = Uploadform(request.POST,request.FILES)
-        if form.is_valid():
-            form.save()
 
-        else:
-            form = Uploadform(commited=False)
-            data = form.cleaned_data
-            seriousmlprocess(data)
+class Learnsomethingnew(LoginRequiredMixin,TemplateView):
+    template_name = 'core/learnsomethingnew.html'
 
-    return render(request,'file_upload.html',{'form':form })
+class aboutus(TemplateView):
+    template_name = 'core/aboutus.html'
+
+class SaferInternet(TemplateView):
+    template_name = 'core/saferinternet.html'
